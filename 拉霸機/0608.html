@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+</head>
+<script>
+	var flag=0;
+	var images=new Array();
+	images[0]="imges/a.jpg";
+	images[1]="imges/b.jpg";
+	images[2]="imges/c.jpg";
+	var x=0; 
+		
+	
+	function changeimage(){
+		if(flag==1){
+			var num1=Math.floor((Math.random() * 3) );
+			document.getElementById("img").src=images[num1];
+			var num2=Math.floor((Math.random() * 3) );
+			document.getElementById("img1").src=images[num2];
+			var num3=Math.floor((Math.random() * 3) );
+			document.getElementById("img2").src=images[num3];
+		}
+	}
+	var num=0;
+	var cou=0;
+	function changebutton(){
+		if(document.getElementById("playNormal").value=="start"){
+			document.getElementById("count").innerHTML=num+"分";
+			flag=1;
+			document.getElementById("playNormal").value="stop";
+		}else{
+			if(cou<3){
+				flag=0;
+				document.getElementById("playNormal").value="start";
+				if(document.getElementById("img").src==document.getElementById("img1").src&&document.getElementById("img").src==document.getElementById("img2").src){
+					//alert(document.getElementById("img").src);
+					if(document.getElementById("img").src=="file:///C:/Users/yehsc/Desktop/%E6%8B%89%E9%9C%B8%E6%A9%9F/%E6%8B%89%E9%9C%B8%E6%A9%9F/imges/a.jpg"){
+					num=num+10;
+					cou++;
+					document.getElementById("count").innerHTML=num+"分";
+					}else if(document.getElementById("img").src=="file:///C:/Users/yehsc/Desktop/%E6%8B%89%E9%9C%B8%E6%A9%9F/%E6%8B%89%E9%9C%B8%E6%A9%9F/imges/b.jpg"){
+					num=num+20;
+					cou++;
+					document.getElementById("count").innerHTML=num+"分";
+					}else if(document.getElementById("img").src=="file:///C:/Users/yehsc/Desktop/%E6%8B%89%E9%9C%B8%E6%A9%9F/%E6%8B%89%E9%9C%B8%E6%A9%9F/imges/c.jpg"){
+					num=num+30;
+					cou++;
+					document.getElementById("count").innerHTML=num+"分";
+					}
+				}
+			}else{
+					document.getElementById("count").innerHTML="三次成績結算"+num+"分";
+					num=0;
+					document.getElementById("playNormal").value="start";
+					cou=0;
+				}
+		}
+	}
+	function init(){
+		setInterval('changeimage()',200);
+	}
+</script>
+<body onload="init();">
+	<center>
+        <img src="imges/a.jpg" id="img"  height="500" width="500"/>
+        <img src="imges/b.jpg" id="img1" height="500" width="500"/>
+        <img src="imges/c.jpg" id="img2" height="500" width="500"/>
+        <br>
+        <input type="button" id="playNormal" value="start" onClick="changebutton()"></input>
+        <div id="count"></div>
+    </center>
+</body>
+</html>
